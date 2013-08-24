@@ -53,8 +53,8 @@ namespace Spiridios.SnapEncounters
         protected override void LoadContent()
         {
             base.LoadContent();
-            this.DefaultTextRenderer = new TextRenderer(this, "TitleScreenFont", new Color(0xaa, 0xaa, 0xaa));
-            this.messageTextRenderer = new TextRenderer(this, "MessageFont", new Color(0xaa, 0xaa, 0xaa));
+            this.DefaultTextRenderer = new TextRenderer(this, "TitleScreenFont", new Color(0x39, 0x2d, 0x59));
+            this.messageTextRenderer = new TextRenderer(this, "MessageFont", new Color(0x39, 0x2d, 0x59));
 
         }
 

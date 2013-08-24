@@ -5,6 +5,7 @@ using Spiridios.SpiridiEngine;
 using Spiridios.SpiridiEngine.Audio;
 using Spiridios.SpiridiEngine.Input;
 using Spiridios.SpiridiEngine.Scene;
+using Spiridios.SnapEncounters.Encounters;
 using System;
 using System.Collections.Generic;
 
@@ -12,6 +13,8 @@ namespace Spiridios.SnapEncounters
 {
     public class TitleState : State
     {
+        private Background background;
+
         public TitleState(SpiridiGame game)
             : base(game)
         {
@@ -20,6 +23,11 @@ namespace Spiridios.SnapEncounters
         public override void Initialize()
         {
             base.Initialize();
+
+            // Load the continents 
+            this.game.ImageManager.AddImage("Background", "Background.png");
+
+            this.background = new StaticBackground("Background");
         }
 
         public override void Update(GameTime gameTime)
@@ -31,6 +39,7 @@ namespace Spiridios.SnapEncounters
         {
             base.Draw(gameTime);
 
+            this.background.Draw(game.SpriteBatch);
             int lineHeight = 40;
             int numLines = 6;
             int firstLine = (game.WindowHeight - (numLines * lineHeight)) / 2;
@@ -45,7 +54,7 @@ namespace Spiridios.SnapEncounters
         public override void KeyUp(KeyboardEvent keyState)
         {
             base.KeyUp(keyState);
-            game.NextState = new PlayGameState(game);
+            game.NextState = new PlayGameState(game, this, background);
             game.NextState.Initialize();
         }
 
@@ -53,14 +62,37 @@ namespace Spiridios.SnapEncounters
 
     public class PlayGameState : State
     {
-        public PlayGameState(SpiridiGame game)
+        private Background background;
+        private Encounter encounters;
+        private State titleState;
+
+        public PlayGameState(SpiridiGame game, State titleState, Background background)
             : base(game)
         {
+            this.background = background;
+            this.titleState = titleState;
         }
 
         public override void Initialize()
         {
             base.Initialize();
+            encounters = new ExpositionEncounter("Test Exposition");
         }
+
+        public override void Draw(GameTime gameTime)
+        {
+            base.Draw(gameTime);
+
+            this.background.Draw(game.SpriteBatch);
+            game.DrawFPS();
+        }
+
+        public override void KeyUp(KeyboardEvent keyState)
+        {
+            base.KeyUp(keyState);
+            game.NextState = titleState;
+            game.NextState.Initialize();
+        }
+
     }
 }
