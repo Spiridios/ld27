@@ -16,6 +16,7 @@ namespace Spiridios.SnapEncounters
     public class SnapEncounters : SpiridiGame
     {
         private TextRenderer messageTextRenderer;
+        private int firstLine;
 
         public SnapEncounters()
             : base()
@@ -23,7 +24,9 @@ namespace Spiridios.SnapEncounters
             Content.RootDirectory = "Content";
             this.SetWindowSize(640, 480);
             this.ClearColor = new Color(0, 0, 0);
-#if(!JSIL)
+#if(JSIL)
+            this.IsQuickExit = false;
+#else
             this.IsQuickExit = true;
 #endif
 
@@ -53,14 +56,25 @@ namespace Spiridios.SnapEncounters
         protected override void LoadContent()
         {
             base.LoadContent();
-            this.DefaultTextRenderer = new TextRenderer(this, "TitleScreenFont", new Color(0x39, 0x2d, 0x59));
-            this.messageTextRenderer = new TextRenderer(this, "MessageFont", new Color(0x39, 0x2d, 0x59));
+            this.DefaultTextRenderer = new TextRenderer(this, "TitleScreenFont", Color.White );
 
+            this.messageTextRenderer = new TextRenderer(this, "MessageFont", Color.White);
+            this.firstLine = this.messageTextRenderer.LineHeight * 3;
         }
 
         protected override void UnloadContent()
         {
             base.UnloadContent();
+        }
+
+        internal TextRenderer MessageTextRenderer
+        {
+            get { return this.messageTextRenderer; }
+        }
+
+        internal int FirstTextLine
+        {
+            get { return this.firstLine; }
         }
     }
 }
