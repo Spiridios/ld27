@@ -1,0 +1,9 @@
+syntax: glob
+bin/*
+obj/*
+*.suo
+*.csproj.*
+*proj.user
+SnapEncountersJsil/jsil/
+SnapEncountersJsil/Libraries/
+build_jsil.log
