@@ -33,6 +33,8 @@ namespace Spiridios.SnapEncounters
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            game.NextState = new PlayGameState(game, this, background);
+            game.NextState.Initialize();
         }
 
         public override void Draw(GameTime gameTime)
@@ -76,7 +78,33 @@ namespace Spiridios.SnapEncounters
         public override void Initialize()
         {
             base.Initialize();
-            encounters = new ExpositionEncounter("Test Exposition");
+            encounters = new ExpositionEncounter("Welcome to Snap Encounters")
+                .AddLine("")
+                .AddLine("You are an adventurer and must make")
+                .AddLine("snap decisions in order to progress.")
+                .AddLine("")
+                .AddLine("Failure to make a choice in time")
+                .AddLine("will lead to your grisly demise.")
+                .AddLine("")
+                .AddLine("(continue)");
+
+            encounters.AddEncounter(new ExpositionEncounter("Test")
+                
+                );
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+            if (encounters.IsDone)
+            {
+                encounters = encounters.NextEncounter;
+                if (encounters == null)
+                {
+                    //game.NextState = titleState;
+                    Initialize();
+                }
+            }
         }
 
         public override void Draw(GameTime gameTime)
@@ -84,14 +112,14 @@ namespace Spiridios.SnapEncounters
             base.Draw(gameTime);
 
             this.background.Draw(game.SpriteBatch);
+            encounters.Draw(game.SpriteBatch);
             game.DrawFPS();
         }
 
         public override void KeyUp(KeyboardEvent keyState)
         {
             base.KeyUp(keyState);
-            game.NextState = titleState;
-            game.NextState.Initialize();
+            encounters.KeyUp();
         }
 
     }
