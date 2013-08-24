@@ -1,6 +1,6 @@
 using System;
 
-namespace SnapEncounters
+namespace Spiridios.SnapEncounters
 {
 #if WINDOWS || XBOX
     static class Program

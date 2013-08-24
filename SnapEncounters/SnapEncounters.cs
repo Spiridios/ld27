@@ -15,6 +15,8 @@ namespace Spiridios.SnapEncounters
 {
     public class SnapEncounters : SpiridiGame
     {
+        private TextRenderer messageTextRenderer;
+
         public SnapEncounters()
             : base()
         {
@@ -30,11 +32,17 @@ namespace Spiridios.SnapEncounters
 #else
             this.LockFramerate = true;
 #endif
+            this.NextState = new BootState(this, new TitleState(this));
         }
 
         protected override void Initialize()
         {
             base.Initialize();
+
+            this.InputManager.RegisterActionBinding("left-choice", Keys.Left);
+            this.InputManager.RegisterActionBinding("right-choice", Keys.Right);
+            this.InputManager.RegisterActionBinding("doStuff", Keys.Space);
+
 #if(DEBUG)
             this.ShowFPS = true;
 #else
@@ -45,6 +53,9 @@ namespace Spiridios.SnapEncounters
         protected override void LoadContent()
         {
             base.LoadContent();
+            this.DefaultTextRenderer = new TextRenderer(this, "TitleScreenFont", new Color(0xaa, 0xaa, 0xaa));
+            this.messageTextRenderer = new TextRenderer(this, "MessageFont", new Color(0xaa, 0xaa, 0xaa));
+
         }
 
         protected override void UnloadContent()
