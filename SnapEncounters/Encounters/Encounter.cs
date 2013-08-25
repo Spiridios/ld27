@@ -7,7 +7,7 @@ using Spiridios.SpiridiEngine;
 
 namespace Spiridios.SnapEncounters.Encounters
 {
-    public class Encounter : Drawable
+    public class Encounter : Drawable, Updatable
     {
         public enum EncounterType { Exposition, Choice };
         private EncounterType encounterType;
@@ -15,7 +15,8 @@ namespace Spiridios.SnapEncounters.Encounters
         protected SnapEncounters game;
         private List<String> exposition = new List<String>();
 
-        protected bool done = false;
+        public enum Choice { NoChoice, LeftChoice, RightChoice, Expired, Continue};
+        private Choice choice;
 
         public Encounter(EncounterType encounterType)
         {
@@ -70,17 +71,21 @@ namespace Spiridios.SnapEncounters.Encounters
             DrawExposition(spriteBatch);
         }
 
+        public virtual void Update(System.TimeSpan elapsedTime)
+        {
+            if (this.encounterType == EncounterType.Exposition && game.InputManager.IsAnyKeyTriggered)
+            {
+                this.choice = Choice.Continue;
+            }
+        }
+
         public virtual void KeyUp()
         {
-            if (this.encounterType == EncounterType.Exposition)
-            {
-                this.done = true;
-            }
         }
 
         public bool IsDone
         {
-            get { return done; }
+            get { return choice != Choice.NoChoice; }
         }
 
     }

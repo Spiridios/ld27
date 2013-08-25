@@ -100,6 +100,7 @@ namespace Spiridios.SnapEncounters
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            encounters.Update(gameTime.ElapsedGameTime);
             if (encounters.IsDone)
             {
                 encounters = encounters.NextEncounter;
