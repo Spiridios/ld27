@@ -4,6 +4,6 @@
     <Frame tile="11" />
   </Animation>
   <Animation name="dead">
-    <Frame tile="11" />
+    <Frame tile="12" />
   </Animation>
 </AnimatedSprite>

@@ -18,6 +18,9 @@ namespace Spiridios.SnapEncounters.Encounters
         private Encounter nextEncounter;
         protected SnapEncounters game;
 
+        private SEActor actor = null;
+        private Vector2 DefaultActorPosition = new Vector2(380, 300);
+
         private List<String> exposition = new List<String>();
 
         private Image leftImage;
@@ -50,6 +53,16 @@ namespace Spiridios.SnapEncounters.Encounters
             : this(EncounterType.Exposition)
         {
             this.AddLine(expositionLine);
+        }
+
+        public SEActor Actor
+        {
+            get { return this.actor; }
+            set
+            {
+                this.actor = value;
+                this.actor.Position = DefaultActorPosition;
+            }
         }
 
         public Encounter NextEncounter
@@ -112,12 +125,21 @@ namespace Spiridios.SnapEncounters.Encounters
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
+            if (actor != null)
+            {
+                actor.Draw(spriteBatch);
+            }
             DrawExposition(spriteBatch);
             DrawChoices(spriteBatch);
         }
 
         public virtual void Update(System.TimeSpan elapsedTime)
         {
+            if (this.actor != null)
+            {
+                this.actor.Update(elapsedTime);
+            }
+
             if (this.encounterType == EncounterType.Exposition)
             {
                 if (game.InputManager.IsAnyKeyTriggered && !(game.InputManager.IsTriggered("left-choice") || game.InputManager.IsTriggered("right-choice")))

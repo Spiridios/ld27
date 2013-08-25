@@ -11,10 +11,12 @@ namespace Spiridios.SnapEncounters.Encounters
         private Encounter expiredEncounter;
         private Encounter successRangedEncounter;
         private Encounter successMeleEncounter;
+        private SEActor ninja = new SEActor("Ninja.xml");
 
         public WeaponEncounter()
             : base(new TextureImage("Mele"), new TextureImage("Ranged"))
         {
+
             String preamble = "\nA ninja jumps out of exactly where ninjas\n"
                 + "jump from - nowhere, and demands your wallet.\n"
                 + "Being a good adventurer you decide to fight.";
@@ -24,6 +26,8 @@ namespace Spiridios.SnapEncounters.Encounters
                 + "skllled hands, you would have easiliy slain the ninja";
 
             this.expiredEncounter = new Encounter(preamble);
+            this.expiredEncounter.Actor = ninja;
+
 
 
             if(((SnapEncounters)game).Adventurer.Gender == Adventurer.GenderType.Female)
@@ -45,6 +49,7 @@ namespace Spiridios.SnapEncounters.Encounters
                 + "Aren't you glad you had a weapon handy?";
             this.successMeleEncounter = new Encounter(preamble)
             .AddLine(successMele);
+            this.successMeleEncounter.Actor = ninja;
 
             String successRange =
                   "The ninja rushes you, but you already have\n"
@@ -53,6 +58,7 @@ namespace Spiridios.SnapEncounters.Encounters
                 + "Aren't you glad you had a weapon handy?";
             this.successRangedEncounter = new Encounter(preamble)
             .AddLine(successRange);
+            this.successRangedEncounter.Actor = ninja;
         }
 
         public override void Update(TimeSpan elapsedTime)
@@ -62,13 +68,16 @@ namespace Spiridios.SnapEncounters.Encounters
             {
                 case (Choice.Expired):
                     NextEncounter = expiredEncounter;
+                    ((SnapEncounters)game).Adventurer.Actor.Kill();
                     break;
                 case (Choice.LeftChoice):
                     ((SnapEncounters)game).Adventurer.Weapon = Adventurer.WeaponType.Mele;
+                    ninja.Kill();
                     NextEncounter = successMeleEncounter;
                     break;
                 case (Choice.RightChoice):
                     ((SnapEncounters)game).Adventurer.Weapon = Adventurer.WeaponType.Ranged;
+                    ninja.Kill();
                     NextEncounter = successRangedEncounter;
                     break;
             }
