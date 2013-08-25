@@ -33,6 +33,7 @@ namespace Spiridios.SnapEncounters
                 this.game.ImageManager.AddImage("Mele", "Mele.png");
                 this.game.ImageManager.AddImage("Ranged", "Ranged.png");
                 this.game.ImageManager.AddImage("Flee", "Flee.png");
+                this.game.ImageManager.AddImage("Heart", "Heart.png");
 
                 game.PlayBackgroundMusic("bu-ship-of-a-viking.mp3");
 
@@ -112,10 +113,17 @@ namespace Spiridios.SnapEncounters
                   "\nThat was certainly exciting. Though"
                 + "\nnot nearly as exciting as your last"
                 + "\nadventure, right? Let's see what's"
-                + "\n up ahead, shall we?"
+                + "\nup ahead, shall we?"
                 ));
 
             encounters.AddEncounter(new BanditEncounter());
+
+            encounters.AddEncounter(new Encounter(
+                  "\nWhat did that bandit think? That you"
+                + "\nwere out for an evening stroll?"
+                ));
+
+            encounters.AddEncounter(new DamsilEncounter());
 
         }
 

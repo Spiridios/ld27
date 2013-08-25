@@ -69,12 +69,12 @@ namespace Spiridios.SnapEncounters.Encounters
                     break;
                 case (Choice.LeftChoice):
                     ((SnapEncounters)game).Adventurer.TakeHit();
-                    NextEncounter = successFleeEncounter;
+                    InsertEncounter(successFleeEncounter);
                     break;
                 case (Choice.RightChoice):
                     ((SnapEncounters)game).Adventurer.GainXP();
                     enemy.Kill();
-                    NextEncounter = successFightEncounter;
+                    InsertEncounter(successFightEncounter);
                     break;
             }
         }
