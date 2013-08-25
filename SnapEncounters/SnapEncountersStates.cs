@@ -28,6 +28,8 @@ namespace Spiridios.SnapEncounters
             if (this.background == null)
             {
                 this.game.ImageManager.AddImage("Background", "Background.png");
+                this.game.ImageManager.AddImage("Male", "Male.png");
+                this.game.ImageManager.AddImage("Female", "Female.png");
 
                 this.background = new StaticBackground("Background");
             }
@@ -111,6 +113,8 @@ namespace Spiridios.SnapEncounters
                 .AddLine("")
                 .AddLine("(continue)")
                 );
+
+            encounters.AddEncounter(new Encounter(new TextureImage("Male"), new TextureImage("Female")));
 
         }
 
