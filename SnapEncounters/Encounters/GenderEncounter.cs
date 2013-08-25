@@ -33,7 +33,7 @@ namespace Spiridios.SnapEncounters.Encounters
             this.successExposition = "Whew, glad we got that cleared up {0}\n"
                 + "we've kinda been wondering...\n"
                 + "\n"
-                + "Your next snap decision has\nto do with how you fight";
+                + "Your next snap decision has\nto do with how you fight.";
         }
 
         public override void Update(TimeSpan elapsedTime)
