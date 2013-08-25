@@ -10,12 +10,12 @@ namespace Spiridios.SnapEncounters
 {
     public class Adventurer : Drawable, Updatable
     {
-        private Actor actor;
-        private Actor neutralPC;
-        private Actor femalePC;
-        private Actor malePC;
+        private SEActor actor;
+        private SEActor neutralPC;
+        private SEActor femalePC;
+        private SEActor malePC;
 
-        private readonly Vector2 defaultPlayerActorPosition = new Vector2(320, 300);
+        private readonly Vector2 defaultPlayerActorPosition = new Vector2(240, 300);
         internal Vector2 DefaultPlayerActorPosition
         {
             get { return defaultPlayerActorPosition; }
@@ -30,17 +30,17 @@ namespace Spiridios.SnapEncounters
         {
             Gender = GenderType.NotSet;
 
-            neutralPC = new Actor(new AnimatedImage("NeutralPC.xml"));
+            neutralPC = new SEActor("NeutralPC.xml");
             neutralPC.Position = defaultPlayerActorPosition;
             actor = neutralPC;
-            femalePC = new Actor(new AnimatedImage("FemalePC.xml"));
+            femalePC = new SEActor("FemalePC.xml");
             femalePC.Position = defaultPlayerActorPosition;
-            malePC = new Actor(new AnimatedImage("MalePC.xml"));
+            malePC = new SEActor("MalePC.xml");
             malePC.Position = defaultPlayerActorPosition;
             
         }
 
-        public Actor Actor
+        public SEActor Actor
         {
             get { return actor; }
         }

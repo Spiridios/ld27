@@ -126,6 +126,7 @@
     <Compile Include="Encounters\WeaponEncounter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="SEActor.cs" />
     <Compile Include="SnapEncounters.cs" />
     <Compile Include="SnapEncountersStates.cs" />
   </ItemGroup>
