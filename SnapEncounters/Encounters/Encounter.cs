@@ -9,14 +9,24 @@ namespace Spiridios.SnapEncounters.Encounters
 {
     public class Encounter : Drawable
     {
+        public enum EncounterType { Exposition, Choice };
+        private EncounterType encounterType;
         private Encounter nextEncounter;
         protected SnapEncounters game;
+        private List<String> exposition = new List<String>();
 
         protected bool done = false;
 
-        public Encounter()
+        public Encounter(EncounterType encounterType)
         {
             this.game = (SnapEncounters)SpiridiGame.Instance;
+            this.encounterType = encounterType;
+        }
+
+        public Encounter(String expositionLine)
+            : this(EncounterType.Exposition)
+        {
+            this.exposition.Add(expositionLine);
         }
 
         public Encounter NextEncounter
@@ -37,13 +47,35 @@ namespace Spiridios.SnapEncounters.Encounters
             }
         }
 
+        public Encounter AddLine(String expositionLine)
+        {
+            this.exposition.Add(expositionLine);
+            return this;
+        }
+
+        public void DrawExposition(SpriteBatch spriteBatch)
+        {
+            int y = game.FirstTextLine;
+            TextRenderer textRenderer = game.MessageTextRenderer;
+
+            foreach (String line in exposition)
+            {
+                textRenderer.DrawText(spriteBatch, line, TextRenderer.CENTERED, y);
+                y += textRenderer.LineHeight;
+            }
+        }
+
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            throw new NotImplementedException();
+            DrawExposition(spriteBatch);
         }
 
         public virtual void KeyUp()
         {
+            if (this.encounterType == EncounterType.Exposition)
+            {
+                this.done = true;
+            }
         }
 
         public bool IsDone
