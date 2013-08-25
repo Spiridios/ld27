@@ -9,11 +9,15 @@ namespace Spiridios.SnapEncounters
     {
         public enum GenderType { Male, Female, NotSet };
 
+        public enum WeaponType { Ranged, Mele, NotSet };
+
         public Adventurer()
         {
             Gender = GenderType.NotSet;
         }
 
         public GenderType Gender { get; set; }
+
+        public WeaponType Weapon { get; set; }
     }
 }
