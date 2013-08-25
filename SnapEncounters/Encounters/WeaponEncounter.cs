@@ -17,6 +17,11 @@ namespace Spiridios.SnapEncounters.Encounters
             : base(new TextureImage("Mele"), new TextureImage("Ranged"))
         {
 
+        }
+
+        public override void Activate()
+        {
+            base.Activate();
             String preamble = "\nA ninja jumps out of exactly where ninjas\n"
                 + "jump from - nowhere, and demands your wallet.\n"
                 + "Being a good adventurer you decide to fight.";
@@ -28,9 +33,7 @@ namespace Spiridios.SnapEncounters.Encounters
             this.expiredEncounter = new Encounter(preamble);
             this.expiredEncounter.Actor = ninja;
 
-
-
-            if(((SnapEncounters)game).Adventurer.Gender == Adventurer.GenderType.Female)
+            if (((SnapEncounters)game).Adventurer.Gender == Adventurer.GenderType.Female)
             {
                 this.expiredEncounter
                     .AddLine(String.Format(expired, "Muay Thai"));
@@ -59,6 +62,7 @@ namespace Spiridios.SnapEncounters.Encounters
             this.successRangedEncounter = new Encounter(preamble)
             .AddLine(successRange);
             this.successRangedEncounter.Actor = ninja;
+
         }
 
         public override void Update(TimeSpan elapsedTime)

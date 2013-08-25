@@ -122,6 +122,7 @@
   <ItemGroup>
     <Compile Include="Adventurer.cs" />
     <Compile Include="Encounters\BanditEncounter.cs" />
+    <Compile Include="Encounters\DamsilEncounter.cs" />
     <Compile Include="Encounters\Encounter.cs" />
     <Compile Include="Encounters\GenderEncounter.cs" />
     <Compile Include="Encounters\WeaponEncounter.cs" />
