@@ -15,6 +15,11 @@ namespace Spiridios.SnapEncounters
         private SEActor femalePC;
         private SEActor malePC;
 
+        private Image attackImage;
+
+        private int hitPoints = 10;
+        private int xp = 0;
+
         private readonly Vector2 defaultPlayerActorPosition = new Vector2(240, 300);
         internal Vector2 DefaultPlayerActorPosition
         {
@@ -22,13 +27,13 @@ namespace Spiridios.SnapEncounters
         }
 
         public enum GenderType { Male, Female, NotSet };
-        private GenderType gender;
+        private GenderType gender = GenderType.NotSet;
 
         public enum WeaponType { Ranged, Mele, NotSet };
+        private WeaponType weapon = WeaponType.NotSet;
 
         public Adventurer()
         {
-            Gender = GenderType.NotSet;
 
             neutralPC = new SEActor("NeutralPC.xml");
             neutralPC.Position = defaultPlayerActorPosition;
@@ -38,6 +43,33 @@ namespace Spiridios.SnapEncounters
             malePC = new SEActor("MalePC.xml");
             malePC.Position = defaultPlayerActorPosition;
             
+        }
+
+        public void TakeHit()
+        {
+            this.hitPoints--;
+        }
+
+        public int HitPoints
+        {
+            get { return this.hitPoints; }
+            set { this.hitPoints = value; }
+        }
+
+        public void GainXP()
+        {
+            this.xp++;
+        }
+
+        public void GainXP(int amount)
+        {
+            this.xp += amount;
+        }
+
+        public int XP
+        {
+            get { return this.xp; }
+            set { this.xp = value; }
         }
 
         public SEActor Actor
@@ -66,7 +98,28 @@ namespace Spiridios.SnapEncounters
             }
         }
 
-        public WeaponType Weapon { get; set; }
+        public Image AttackImage
+        {
+            get { return this.attackImage; }
+        }
+
+        public WeaponType Weapon
+        {
+            get { return this.weapon; }
+            set
+            {
+                this.weapon = value;
+                if (this.weapon == WeaponType.Ranged)
+                {
+                    this.attackImage = new TextureImage("Ranged");
+                }
+                else
+                {
+                    this.attackImage = new TextureImage("Mele");
+                }
+
+            }
+        }
 
         public void Draw(SpriteBatch spriteBatch)
         {

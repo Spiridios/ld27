@@ -23,10 +23,10 @@ namespace Spiridios.SnapEncounters.Encounters
 
         private List<String> exposition = new List<String>();
 
-        private Image leftImage;
-        private Image rightImage;
+        protected Image leftImage;
+        protected Image rightImage;
 
-        private const int CHOICE_Y = 300;
+        private const int CHOICE_Y = 340;
         private const int CHOICE_LEFT_X = 220;
         private const int CHOICE_RIGHT_X = 420;
 
@@ -55,13 +55,20 @@ namespace Spiridios.SnapEncounters.Encounters
             this.AddLine(expositionLine);
         }
 
+        public virtual void Activate()
+        {
+        }
+
         public SEActor Actor
         {
             get { return this.actor; }
             set
             {
                 this.actor = value;
-                this.actor.Position = DefaultActorPosition;
+                if (this.actor != null)
+                {
+                    this.actor.Position = DefaultActorPosition;
+                }
             }
         }
 

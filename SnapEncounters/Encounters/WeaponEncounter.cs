@@ -46,7 +46,7 @@ namespace Spiridios.SnapEncounters.Encounters
                   "The ninja rushes you with limbs ablur, but\n"
                 + "you stand your ground taking one swipe with\n"
                 + "your trusty sword, easily slaying the ninja\n"
-                + "Aren't you glad you had a weapon handy?";
+                + "Aren't you glad you had your sword handy?";
             this.successMeleEncounter = new Encounter(preamble)
             .AddLine(successMele);
             this.successMeleEncounter.Actor = ninja;
@@ -55,7 +55,7 @@ namespace Spiridios.SnapEncounters.Encounters
                   "The ninja rushes you, but you already have\n"
                 + "your bow drawn. Before the ninja knows what\n"
                 + "hit him, he's slain.\n"
-                + "Aren't you glad you had a weapon handy?";
+                + "Aren't you glad you had your bow handy?";
             this.successRangedEncounter = new Encounter(preamble)
             .AddLine(successRange);
             this.successRangedEncounter.Actor = ninja;
@@ -72,13 +72,15 @@ namespace Spiridios.SnapEncounters.Encounters
                     break;
                 case (Choice.LeftChoice):
                     ((SnapEncounters)game).Adventurer.Weapon = Adventurer.WeaponType.Mele;
+                    ((SnapEncounters)game).Adventurer.GainXP();
                     ninja.Kill();
-                    NextEncounter = successMeleEncounter;
+                    InsertEncounter(successMeleEncounter);
                     break;
                 case (Choice.RightChoice):
                     ((SnapEncounters)game).Adventurer.Weapon = Adventurer.WeaponType.Ranged;
+                    ((SnapEncounters)game).Adventurer.GainXP();
                     ninja.Kill();
-                    NextEncounter = successRangedEncounter;
+                    InsertEncounter(successRangedEncounter);
                     break;
             }
         }
