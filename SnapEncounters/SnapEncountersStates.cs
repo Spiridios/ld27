@@ -11,90 +11,71 @@ using System.Collections.Generic;
 
 namespace Spiridios.SnapEncounters
 {
-    public class TitleState : State
-    {
-        private Background background;
-
-        public TitleState(SpiridiGame game)
-            : base(game)
-        {
-        }
-
-        public override void Initialize()
-        {
-            base.Initialize();
-
-            // Load the continents 
-            this.game.ImageManager.AddImage("Background", "Background.png");
-
-            this.background = new StaticBackground("Background");
-        }
-
-        public override void Update(GameTime gameTime)
-        {
-            base.Update(gameTime);
-            game.NextState = new PlayGameState(game, this, background);
-            game.NextState.Initialize();
-        }
-
-        public override void Draw(GameTime gameTime)
-        {
-            base.Draw(gameTime);
-
-            this.background.Draw(game.SpriteBatch);
-            int lineHeight = 40;
-            int numLines = 6;
-            int firstLine = (game.WindowHeight - (numLines * lineHeight)) / 2;
-            game.DrawText("Snap Encounters", TextRenderer.CENTERED, firstLine);
-            game.DrawText("A game of 10 one-second encounters", TextRenderer.CENTERED, firstLine + (1 * lineHeight));
-            game.DrawText("By Spiridios for Ludum Dare 27", TextRenderer.CENTERED, firstLine + (3 * lineHeight));
-            game.DrawText("Press any key to start", TextRenderer.CENTERED, firstLine + (5 * lineHeight));
-            game.DrawFPS();
-
-        }
-
-        public override void KeyUp(KeyboardEvent keyState)
-        {
-            base.KeyUp(keyState);
-            game.NextState = new PlayGameState(game, this, background);
-            game.NextState.Initialize();
-        }
-
-    }
-
     public class PlayGameState : State
     {
         private Background background;
         private Encounter encounters;
-        private State titleState;
 
-        public PlayGameState(SpiridiGame game, State titleState, Background background)
+        public PlayGameState(SpiridiGame game)
             : base(game)
         {
-            this.background = background;
-            this.titleState = titleState;
         }
 
         public override void Initialize()
         {
             base.Initialize();
-            encounters = new Encounter("Welcome to Snap Encounters")
+
+            if (this.background == null)
+            {
+                this.game.ImageManager.AddImage("Background", "Background.png");
+
+                this.background = new StaticBackground("Background");
+            }
+            
+            encounters = new Encounter("Welcome, Adventurer, to Ludum Dare 27!")
                 .AddLine("")
-                .AddLine("You are an adventurer and must make")
-                .AddLine("snap decisions in order to progress.")
-                .AddLine("")
-                .AddLine("Failure to make a choice in time")
-                .AddLine("will lead to your grisly demise.")
+                .AddLine("You have discovered Snap Encounters!")
+                .AddLine("As a seasoned adventurer, this is obviously")
+                .AddLine("not the first amazing discovery you have")
+                .AddLine("made. Hopefully it shall not be your last.")
                 .AddLine("")
                 .AddLine("(continue)");
 
-            encounters.AddEncounter(new Encounter("You make your decisions by using")
-                .AddLine("the left and right arrow keys")
+            encounters.AddEncounter(new Encounter("")
+                .AddLine("As an adventurer, you are quite familiar")
+                .AddLine("with snap decisions. When a goul pops out")
+                .AddLine("of a treasure chest, you must quickly")
+                .AddLine("decide whether to flee, fight, or ask for")
+                .AddLine("your three wishes to be granted.")
                 .AddLine("")
-                .AddLine("Let's practice")
                 .AddLine("(continue)")
-                
                 );
+
+            encounters.AddEncounter(new Encounter("")
+                .AddLine("Your choice can easily mean the difference")
+                .AddLine("between life and death. In Snap Encounters")
+                .AddLine("your choices must be made quickly.")
+                .AddLine("")
+                .AddLine("(continue)")
+                );
+
+            encounters.AddEncounter(new Encounter("")
+                .AddLine("How quickly must choices be made?")
+                .AddLine("You must make your choice within 1 second.")
+                .AddLine("Failure to make any choice within 1 second")
+                .AddLine("will lead to grisly results...")
+                .AddLine("")
+                .AddLine("(continue)")
+                );
+
+            encounters.AddEncounter(new Encounter("")
+                .AddLine("But that shouldn't matter to a seasoned")
+                .AddLine("like you.")
+                .AddLine("")
+                .AddLine("(continue)")
+                );
+
+
         }
 
         public override void Update(GameTime gameTime)
@@ -106,7 +87,6 @@ namespace Spiridios.SnapEncounters
                 encounters = encounters.NextEncounter;
                 if (encounters == null)
                 {
-                    //game.NextState = titleState;
                     Initialize();
                 }
             }
@@ -119,6 +99,23 @@ namespace Spiridios.SnapEncounters
             this.background.Draw(game.SpriteBatch);
             encounters.Draw(game.SpriteBatch);
             game.DrawFPS();
+        }
+
+        public void DrawTitleText(GameTime gameTime)
+        {
+            base.Draw(gameTime);
+
+            // Vestigial code - TitleState is only really needed as an asset loader.
+            this.background.Draw(game.SpriteBatch);
+            int lineHeight = 40;
+            int numLines = 6;
+            int firstLine = (game.WindowHeight - (numLines * lineHeight)) / 2;
+            game.DrawText("Snap Encounters", TextRenderer.CENTERED, firstLine);
+            game.DrawText("A game of 10 one-second encounters", TextRenderer.CENTERED, firstLine + (1 * lineHeight));
+            game.DrawText("By Spiridios for Ludum Dare 27", TextRenderer.CENTERED, firstLine + (3 * lineHeight));
+            game.DrawText("Press any key to start", TextRenderer.CENTERED, firstLine + (5 * lineHeight));
+            game.DrawFPS();
+
         }
 
         public override void KeyUp(KeyboardEvent keyState)
