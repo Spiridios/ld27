@@ -17,12 +17,11 @@ namespace Spiridios.SnapEncounters.Encounters
         {
             String preamble = "\nA ninja jumps out of exactly where ninjas\n"
                 + "jump from - nowhere, and demands your wallet.\n"
-                + "being a good adventurer you decide to fight.";
+                + "Being a good adventurer you decide to fight.";
 
             String expired = "Your {0} skills were no match for his\n"
                 + "Jeet Kune Do. If only you had a weapon in your\n"
-                + "skllled hands, you would have easiliy slain the ninja\n"
-                + "\n(restart)";
+                + "skllled hands, you would have easiliy slain the ninja";
 
             this.expiredEncounter = new Encounter(preamble);
 
@@ -41,7 +40,7 @@ namespace Spiridios.SnapEncounters.Encounters
 
             String successMele =
                   "The ninja rushes you with limbs ablur, but\n"
-                + "you stand your ground taking one swype with\n"
+                + "you stand your ground taking one swipe with\n"
                 + "your trusty sword, easily slaying the ninja\n"
                 + "Aren't you glad you had a weapon handy?";
             this.successMeleEncounter = new Encounter(preamble)

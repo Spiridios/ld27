@@ -25,9 +25,7 @@ namespace Spiridios.SnapEncounters.Encounters
             .AddLine("out there and lazily only acknowledge")
             .AddLine("two genders. Since you do not fit our narrow")
             .AddLine("world view, you have failed your Snap")
-            .AddLine("Encounters adventure.")
-            .AddLine("")
-            .AddLine("(restart)");
+            .AddLine("Encounters adventure.");
 
             this.successEncounter = new Encounter("");
             this.successExposition = "Whew, glad we got that cleared up {0}\n"
@@ -46,13 +44,11 @@ namespace Spiridios.SnapEncounters.Encounters
                     break;
                 case(Choice.LeftChoice):
                     ((SnapEncounters)game).Adventurer.Gender = Adventurer.GenderType.Male;
-                    this.successEncounter.NextEncounter = this.NextEncounter;
-                    NextEncounter = successEncounter.AddLine(String.Format(this.successExposition, MALE_REPLACE));
+                    InsertEncounter(successEncounter.AddLine(String.Format(this.successExposition, MALE_REPLACE)));
                     break;
                 case(Choice.RightChoice):
                     ((SnapEncounters)game).Adventurer.Gender = Adventurer.GenderType.Female;
-                    this.successEncounter.NextEncounter = this.NextEncounter;
-                    NextEncounter = successEncounter.AddLine(String.Format(this.successExposition, FEMALE_REPLACE));
+                    InsertEncounter(successEncounter.AddLine(String.Format(this.successExposition, FEMALE_REPLACE)));
                     break;
             }
         }

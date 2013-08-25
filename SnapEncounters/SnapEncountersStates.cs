@@ -37,15 +37,14 @@ namespace Spiridios.SnapEncounters
             }
 
             ((SnapEncounters)game).Adventurer = new Adventurer();
-            
+
             encounters = new Encounter("Welcome, Adventurer, to Ludum Dare 27!")
                 .AddLine("")
                 .AddLine("You have discovered Snap Encounters!")
                 .AddLine("As a seasoned adventurer, this is obviously")
                 .AddLine("not the first amazing discovery you have")
                 .AddLine("made. Hopefully it shall not be your last.")
-                .AddLine("")
-                .AddLine("(continue)");
+                ;
 
             encounters.AddEncounter(new Encounter("")
                 .AddLine("As an adventurer, you are quite familiar")
@@ -53,8 +52,6 @@ namespace Spiridios.SnapEncounters
                 .AddLine("of a treasure chest, you must quickly")
                 .AddLine("decide whether to flee, fight, or ask for")
                 .AddLine("your three wishes to be granted.")
-                .AddLine("")
-                .AddLine("(continue)")
                 );
 
             encounters.AddEncounter(new Encounter("")
@@ -62,8 +59,6 @@ namespace Spiridios.SnapEncounters
                 .AddLine("Anyhow, the point is your choice can easily")
                 .AddLine("be the difference between life and death.")
                 .AddLine("(or great fortune!)")
-                .AddLine("")
-                .AddLine("(continue)")
                 );
 
             encounters.AddEncounter(new Encounter("")
@@ -73,8 +68,6 @@ namespace Spiridios.SnapEncounters
                 .AddLine("What can we say, we bore easily.")
                 .AddLine("Failure to make any choice within 1 second")
                 .AddLine("will lead to....")
-                .AddLine("")
-                .AddLine("(continue)")
                 );
 
             encounters.AddEncounter(new Encounter("")
@@ -83,8 +76,6 @@ namespace Spiridios.SnapEncounters
                 .AddLine("(We also believe in strict rules)")
                 .AddLine("But that shouldn't matter to a seasoned")
                 .AddLine("adventurer like you, right?")
-                .AddLine("")
-                .AddLine("(continue)")
                 );
 
             encounters.AddEncounter(new Encounter("")
@@ -92,8 +83,6 @@ namespace Spiridios.SnapEncounters
                 .AddLine("10 decisions. Your decisions will determine")
                 .AddLine("how you progress. Why 10? Because, uh, you")
                 .AddLine("have ten fingers, that's why.")
-                .AddLine("")
-                .AddLine("(continue)")
                 );
 
             encounters.AddEncounter(new Encounter("")
@@ -103,8 +92,6 @@ namespace Spiridios.SnapEncounters
                 .AddLine("Anyhow, you will see your choices flash")
                 .AddLine("on screen. Use the left or right arrow")
                 .AddLine("keys to make your choice.")
-                .AddLine("")
-                .AddLine("(continue)")
                 );
 
 
@@ -114,8 +101,6 @@ namespace Spiridios.SnapEncounters
                 .AddLine("")
                 .AddLine("You better be, we sense your first decision")
                 .AddLine("coming up...")
-                .AddLine("")
-                .AddLine("(continue)")
                 );
 
             encounters.AddEncounter(new GenderEncounter());
