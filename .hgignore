@@ -4,6 +4,7 @@ obj/*
 *.suo
 *.csproj.*
 *proj.user
+Autotracker/
 SnapEncountersJsil/jsil/
 SnapEncountersJsil/Libraries/
 build_jsil.log

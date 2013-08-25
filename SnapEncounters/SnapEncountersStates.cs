@@ -34,6 +34,8 @@ namespace Spiridios.SnapEncounters
                 this.game.ImageManager.AddImage("Ranged", "Ranged.png");
                 this.game.ImageManager.AddImage("Flee", "Flee.png");
 
+                game.PlayBackgroundMusic("bu-ship-of-a-viking.mp3");
+
                 this.background = new StaticBackground("Background");
             }
 
