@@ -18,6 +18,8 @@ namespace Spiridios.SnapEncounters
         private TextRenderer messageTextRenderer;
         private int firstLine;
 
+        internal Adventurer Adventurer { get; set; }
+
         public SnapEncounters()
             : base()
         {
@@ -68,8 +70,6 @@ namespace Spiridios.SnapEncounters
         {
             base.UnloadContent();
         }
-
-        internal Adventurer Adventurer { get; set; }
 
         internal TextRenderer MessageTextRenderer
         {

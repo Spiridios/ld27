@@ -15,7 +15,6 @@ namespace Spiridios.SnapEncounters
     {
         private Background background;
         private Encounter encounters;
-        private Actor pc;
 
         public PlayGameState(SpiridiGame game)
             : base(game)
@@ -37,8 +36,6 @@ namespace Spiridios.SnapEncounters
                 this.background = new StaticBackground("Background");
             }
 
-            pc = new Actor(new AnimatedImage("NeutralPC.xml"));
-            pc.Position = new Vector2(320, 240);
             ((SnapEncounters)game).Adventurer = new Adventurer();
 
             encounters = new Encounter("Welcome, Adventurer, to Ludum Dare 27!")
@@ -114,7 +111,7 @@ namespace Spiridios.SnapEncounters
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            pc.Update(gameTime.ElapsedGameTime);
+            ((SnapEncounters)game).Adventurer.Update(gameTime.ElapsedGameTime);
             encounters.Update(gameTime.ElapsedGameTime);
             if (encounters.IsDone)
             {
@@ -131,7 +128,7 @@ namespace Spiridios.SnapEncounters
             base.Draw(gameTime);
 
             this.background.Draw(game.SpriteBatch);
-            pc.Draw(game.SpriteBatch);
+            ((SnapEncounters)game).Adventurer.Draw(game.SpriteBatch);
             encounters.Draw(game.SpriteBatch);
             game.DrawFPS();
         }
