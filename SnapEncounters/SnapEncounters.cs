@@ -24,6 +24,8 @@ namespace Spiridios.SnapEncounters
             Content.RootDirectory = "Content";
             this.SetWindowSize(640, 480);
             this.ClearColor = new Color(0, 0, 0);
+            this.DrawBoundingShapes = false;
+
 #if(JSIL)
             this.IsQuickExit = false;
 #else
