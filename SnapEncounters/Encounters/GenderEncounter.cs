@@ -46,10 +46,12 @@ namespace Spiridios.SnapEncounters.Encounters
                     break;
                 case(Choice.LeftChoice):
                     ((SnapEncounters)game).Adventurer.Gender = Adventurer.GenderType.Male;
+                    this.successEncounter.NextEncounter = this.NextEncounter;
                     NextEncounter = successEncounter.AddLine(String.Format(this.successExposition, MALE_REPLACE));
                     break;
                 case(Choice.RightChoice):
                     ((SnapEncounters)game).Adventurer.Gender = Adventurer.GenderType.Female;
+                    this.successEncounter.NextEncounter = this.NextEncounter;
                     NextEncounter = successEncounter.AddLine(String.Format(this.successExposition, FEMALE_REPLACE));
                     break;
             }
