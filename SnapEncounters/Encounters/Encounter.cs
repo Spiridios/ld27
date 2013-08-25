@@ -14,7 +14,9 @@ namespace Spiridios.SnapEncounters.Encounters
         private EncounterType encounterType;
         private Encounter nextEncounter;
         protected SnapEncounters game;
+
         private List<String> exposition = new List<String>();
+
         private Image leftImage;
         private Image rightImage;
 
@@ -22,8 +24,11 @@ namespace Spiridios.SnapEncounters.Encounters
         private const int CHOICE_LEFT_X = 220;
         private const int CHOICE_RIGHT_X = 420;
 
+        private double currentChoiceElapsedTime = 0;
+        private const double MAX_CHOICE_TIME = 1;
+
         public enum Choice { NoChoice, LeftChoice, RightChoice, Expired, Continue};
-        private Choice choice;
+        protected Choice choice;
 
         public Encounter(EncounterType encounterType)
         {
@@ -97,9 +102,31 @@ namespace Spiridios.SnapEncounters.Encounters
 
         public virtual void Update(System.TimeSpan elapsedTime)
         {
-            if (this.encounterType == EncounterType.Exposition && game.InputManager.IsAnyKeyTriggered)
+            if (this.encounterType == EncounterType.Exposition)
             {
-                this.choice = Choice.Continue;
+                if (game.InputManager.IsAnyKeyTriggered)
+                {
+                    this.choice = Choice.Continue;
+                }
+            }
+            else
+            {
+                this.currentChoiceElapsedTime += elapsedTime.TotalSeconds;
+                if (this.choice == Choice.NoChoice)
+                {
+                    if (game.InputManager.IsTriggered("left-choice"))
+                    {
+                        this.choice = Choice.LeftChoice;
+                    }
+                    else if (game.InputManager.IsTriggered("right-choice"))
+                    {
+                        this.choice = Choice.RightChoice;
+                    }
+                    else if(this.currentChoiceElapsedTime > MAX_CHOICE_TIME)
+                    {
+                        this.choice = Choice.Expired;
+                    }
+                }
             }
         }
 
