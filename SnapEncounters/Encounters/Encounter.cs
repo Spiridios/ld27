@@ -69,7 +69,8 @@ namespace Spiridios.SnapEncounters.Encounters
 
         public Encounter AddLine(String expositionLine)
         {
-            this.exposition.Add(expositionLine);
+            String[] lines = expositionLine.Split('\n');
+            this.exposition.AddRange(lines);
             return this;
         }
 

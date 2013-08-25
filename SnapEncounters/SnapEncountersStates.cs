@@ -33,6 +33,8 @@ namespace Spiridios.SnapEncounters
 
                 this.background = new StaticBackground("Background");
             }
+
+            ((SnapEncounters)game).Adventurer = new Adventurer();
             
             encounters = new Encounter("Welcome, Adventurer, to Ludum Dare 27!")
                 .AddLine("")

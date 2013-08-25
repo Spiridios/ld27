@@ -120,6 +120,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adventurer.cs" />
     <Compile Include="Encounters\Encounter.cs" />
     <Compile Include="Encounters\GenderEncounter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

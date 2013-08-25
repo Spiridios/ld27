@@ -67,6 +67,8 @@ namespace Spiridios.SnapEncounters
             base.UnloadContent();
         }
 
+        internal Adventurer Adventurer { get; set; }
+
         internal TextRenderer MessageTextRenderer
         {
             get { return this.messageTextRenderer; }

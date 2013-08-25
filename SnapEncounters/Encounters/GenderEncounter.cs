@@ -9,6 +9,12 @@ namespace Spiridios.SnapEncounters.Encounters
     public class GenderEncounter : Encounter
     {
         private Encounter expiredEncounter;
+        private Encounter successEncounter;
+        private string successExposition;
+
+        private const string MALE_REPLACE = "Sir";
+        private const string FEMALE_REPLACE = "Madam";
+
         public GenderEncounter()
             : base(new TextureImage("Male"), new TextureImage("Female"))
         {
@@ -22,14 +28,30 @@ namespace Spiridios.SnapEncounters.Encounters
             .AddLine("Encounters adventure.")
             .AddLine("")
             .AddLine("(restart)");
+
+            this.successEncounter = new Encounter("");
+            this.successExposition = "Whew, glad we got that cleared up {0}\n"
+                + "we've kinda been wondering...\n"
+                + "\n"
+                + "Your next snap decision has\nto do with how you fight";
         }
 
         public override void Update(TimeSpan elapsedTime)
         {
             base.Update(elapsedTime);
-            if (this.choice == Choice.Expired)
+            switch (this.choice)
             {
-                NextEncounter = expiredEncounter;
+                case (Choice.Expired):
+                    NextEncounter = expiredEncounter;
+                    break;
+                case(Choice.LeftChoice):
+                    ((SnapEncounters)game).Adventurer.Gender = Adventurer.GenderType.Male;
+                    NextEncounter = successEncounter.AddLine(String.Format(this.successExposition, MALE_REPLACE));
+                    break;
+                case(Choice.RightChoice):
+                    ((SnapEncounters)game).Adventurer.Gender = Adventurer.GenderType.Female;
+                    NextEncounter = successEncounter.AddLine(String.Format(this.successExposition, FEMALE_REPLACE));
+                    break;
             }
         }
     }
