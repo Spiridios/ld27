@@ -30,6 +30,8 @@ namespace Spiridios.SnapEncounters
                 this.game.ImageManager.AddImage("Background", "Background.png");
                 this.game.ImageManager.AddImage("Male", "Male.png");
                 this.game.ImageManager.AddImage("Female", "Female.png");
+                this.game.ImageManager.AddImage("Mele", "Mele.png");
+                this.game.ImageManager.AddImage("Ranged", "Ranged.png");
 
                 this.background = new StaticBackground("Background");
             }
@@ -117,6 +119,7 @@ namespace Spiridios.SnapEncounters
                 );
 
             encounters.AddEncounter(new GenderEncounter());
+            encounters.AddEncounter(new WeaponEncounter());
 
         }
 
