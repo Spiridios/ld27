@@ -52,29 +52,65 @@ namespace Spiridios.SnapEncounters
                 );
 
             encounters.AddEncounter(new Encounter("")
-                .AddLine("Your choice can easily mean the difference")
-                .AddLine("between life and death. In Snap Encounters")
-                .AddLine("your choices must be made quickly.")
+                .AddLine("Hey, it was dark. It could have been a genie.")
+                .AddLine("Anyhow, the point is your choice can easily")
+                .AddLine("be the difference between life and death.")
+                .AddLine("(or great fortune!)")
                 .AddLine("")
                 .AddLine("(continue)")
                 );
 
             encounters.AddEncounter(new Encounter("")
-                .AddLine("How quickly must choices be made?")
-                .AddLine("You must make your choice within 1 second.")
+                .AddLine("In Snap Encounters, your choices must be")
+                .AddLine("made quickly. Exactly how quickly?")
+                .AddLine("1 second.")
+                .AddLine("What can we say, we bore easily.")
                 .AddLine("Failure to make any choice within 1 second")
-                .AddLine("will lead to grisly results...")
+                .AddLine("will lead to....")
                 .AddLine("")
                 .AddLine("(continue)")
                 );
 
             encounters.AddEncounter(new Encounter("")
+                .AddLine("Grisly results.")
+                .AddLine("")
+                .AddLine("(We also believe in strict rules)")
                 .AddLine("But that shouldn't matter to a seasoned")
-                .AddLine("like you.")
+                .AddLine("adventurer like you, right?")
                 .AddLine("")
                 .AddLine("(continue)")
                 );
 
+            encounters.AddEncounter(new Encounter("")
+                .AddLine("In this adventure, you will need to make")
+                .AddLine("10 decisions. Your decisions will determine")
+                .AddLine("how you progress. Why 10? Because, uh, you")
+                .AddLine("have ten fingers, that's why.")
+                .AddLine("")
+                .AddLine("(continue)")
+                );
+
+            encounters.AddEncounter(new Encounter("")
+                .AddLine("You do have ten fingers right?")
+                .AddLine("(you never know with adventurers)")
+                .AddLine("")
+                .AddLine("Anyhow, you will see your choices flash")
+                .AddLine("on screen. Use the left or right arrow")
+                .AddLine("keys to make your choice.")
+                .AddLine("")
+                .AddLine("(continue)")
+                );
+
+
+            encounters.AddEncounter(new Encounter("")
+                .AddLine("Ready to see if you measure up while under")
+                .AddLine("pressure, like the great Freddie Mercury?")
+                .AddLine("")
+                .AddLine("You better be, we sense your first decision")
+                .AddLine("coming up...")
+                .AddLine("")
+                .AddLine("(continue)")
+                );
 
         }
 
