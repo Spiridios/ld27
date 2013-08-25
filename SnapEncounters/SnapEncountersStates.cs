@@ -114,7 +114,7 @@ namespace Spiridios.SnapEncounters
                 .AddLine("(continue)")
                 );
 
-            encounters.AddEncounter(new Encounter(new TextureImage("Male"), new TextureImage("Female")));
+            encounters.AddEncounter(new GenderEncounter());
 
         }
 
