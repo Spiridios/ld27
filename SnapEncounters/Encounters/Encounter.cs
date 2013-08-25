@@ -10,6 +10,9 @@ namespace Spiridios.SnapEncounters.Encounters
 {
     public class Encounter : Drawable, Updatable
     {
+        private const string CONTINUE_MESSAGE = "[continue]";
+        private const string RESTART_MESSAGE = "[restart]";
+
         public enum EncounterType { Exposition, Choice };
         private EncounterType encounterType;
         private Encounter nextEncounter;
@@ -46,13 +49,19 @@ namespace Spiridios.SnapEncounters.Encounters
         public Encounter(String expositionLine)
             : this(EncounterType.Exposition)
         {
-            this.exposition.Add(expositionLine);
+            this.AddLine(expositionLine);
         }
 
         public Encounter NextEncounter
         {
             get { return nextEncounter; }
             set { this.nextEncounter = value; }
+        }
+
+        public void InsertEncounter(Encounter encounter)
+        {
+            encounter.AddEncounter(this.nextEncounter);
+            this.nextEncounter = encounter;
         }
 
         public void AddEncounter(Encounter encounter)
@@ -84,6 +93,12 @@ namespace Spiridios.SnapEncounters.Encounters
                 textRenderer.DrawText(spriteBatch, line, TextRenderer.CENTERED, y);
                 y += textRenderer.LineHeight;
             }
+
+            if (this.encounterType == EncounterType.Exposition)
+            {
+                y += textRenderer.LineHeight;
+                textRenderer.DrawText(spriteBatch, nextEncounter == null? RESTART_MESSAGE : CONTINUE_MESSAGE, TextRenderer.CENTERED, y);
+            }
         }
 
         public void DrawChoices(SpriteBatch spriteBatch)
@@ -105,7 +120,7 @@ namespace Spiridios.SnapEncounters.Encounters
         {
             if (this.encounterType == EncounterType.Exposition)
             {
-                if (game.InputManager.IsAnyKeyTriggered)
+                if (game.InputManager.IsAnyKeyTriggered && !(game.InputManager.IsTriggered("left-choice") || game.InputManager.IsTriggered("right-choice")))
                 {
                     this.choice = Choice.Continue;
                 }
