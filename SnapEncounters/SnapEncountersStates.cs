@@ -78,7 +78,7 @@ namespace Spiridios.SnapEncounters
         public override void Initialize()
         {
             base.Initialize();
-            encounters = new ExpositionEncounter("Welcome to Snap Encounters")
+            encounters = new Encounter("Welcome to Snap Encounters")
                 .AddLine("")
                 .AddLine("You are an adventurer and must make")
                 .AddLine("snap decisions in order to progress.")
@@ -88,7 +88,11 @@ namespace Spiridios.SnapEncounters
                 .AddLine("")
                 .AddLine("(continue)");
 
-            encounters.AddEncounter(new ExpositionEncounter("Test")
+            encounters.AddEncounter(new Encounter("You make your decisions by using")
+                .AddLine("the left and right arrow keys")
+                .AddLine("")
+                .AddLine("Let's practice")
+                .AddLine("(continue)")
                 
                 );
         }
