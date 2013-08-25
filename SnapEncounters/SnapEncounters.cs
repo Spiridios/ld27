@@ -35,7 +35,7 @@ namespace Spiridios.SnapEncounters
 #else
             this.LockFramerate = true;
 #endif
-            this.NextState = new BootState(this, new TitleState(this));
+            this.NextState = new BootState(this, new PlayGameState(this));
         }
 
         protected override void Initialize()
