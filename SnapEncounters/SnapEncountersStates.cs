@@ -32,6 +32,7 @@ namespace Spiridios.SnapEncounters
                 this.game.ImageManager.AddImage("Female", "Female.png");
                 this.game.ImageManager.AddImage("Mele", "Mele.png");
                 this.game.ImageManager.AddImage("Ranged", "Ranged.png");
+                this.game.ImageManager.AddImage("Flee", "Flee.png");
 
                 this.background = new StaticBackground("Background");
             }
@@ -105,6 +106,14 @@ namespace Spiridios.SnapEncounters
 
             encounters.AddEncounter(new GenderEncounter());
             encounters.AddEncounter(new WeaponEncounter());
+            encounters.AddEncounter(new Encounter(
+                  "\nThat was certainly exciting. Though"
+                + "\nnot nearly as exciting as your last"
+                + "\nadventure, right? Let's see what's"
+                + "\n up ahead, shall we?"
+                ));
+
+            encounters.AddEncounter(new BanditEncounter());
 
         }
 
@@ -119,6 +128,10 @@ namespace Spiridios.SnapEncounters
                 if (encounters == null)
                 {
                     Initialize();
+                }
+                else
+                {
+                    encounters.Activate();
                 }
             }
         }
