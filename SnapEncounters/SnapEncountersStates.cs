@@ -117,13 +117,9 @@ namespace Spiridios.SnapEncounters
                 ));
 
             encounters.AddEncounter(new BanditEncounter());
-
-            encounters.AddEncounter(new Encounter(
-                  "\nWhat did that bandit think? That you"
-                + "\nwere out for an evening stroll?"
-                ));
-
             encounters.AddEncounter(new DamsilEncounter());
+            encounters.AddEncounter(new ZombieEncounter());
+            encounters.AddEncounter(new SkeletonEncounter());
 
         }
 
