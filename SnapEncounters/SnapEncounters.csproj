@@ -122,6 +122,10 @@
   <ItemGroup>
     <Compile Include="Adventurer.cs" />
     <Compile Include="Encounters\BanditEncounter.cs" />
+    <Compile Include="Encounters\WizardEncounter.cs" />
+    <Compile Include="Encounters\KnightEncounter.cs" />
+    <Compile Include="Encounters\WitchEncounter.cs" />
+    <Compile Include="Encounters\SuccubusEncounter.cs" />
     <Compile Include="Encounters\SkeletonEncounter.cs" />
     <Compile Include="Encounters\ZombieEncounter.cs" />
     <Compile Include="Encounters\DamsilEncounter.cs" />
