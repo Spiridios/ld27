@@ -120,6 +120,17 @@ namespace Spiridios.SnapEncounters
             encounters.AddEncounter(new DamsilEncounter());
             encounters.AddEncounter(new ZombieEncounter());
             encounters.AddEncounter(new SkeletonEncounter());
+            encounters.AddEncounter(new SuccubusEncounter());
+            encounters.AddEncounter(new WitchEncounter());
+            encounters.AddEncounter(new KnightEncounter());
+            encounters.AddEncounter(new WizardEncounter());
+            encounters.AddEncounter(new Encounter(
+                  "\nCongratulations adventurer!"
+                + "\nYou've concured the ten one-"
+                + "\nsecond encounters! As a seasoned"
+                + "\nadventurer, you're probably wanting"
+                + "\nto go again, aren't you?"
+                ));
 
         }
 
