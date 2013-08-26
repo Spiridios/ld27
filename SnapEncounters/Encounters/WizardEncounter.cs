@@ -11,7 +11,7 @@ namespace Spiridios.SnapEncounters.Encounters
         private Encounter expiredEncounter;
         private Encounter successFightEncounter;
         private Encounter successFleeEncounter;
-        private SEActor enemy = new SEActor("Zombie.xml");
+         private SEActor enemy = new SEActor("Wizard.xml");
 
         public WizardEncounter()
             : base(null, new TextureImage("Flee"))
