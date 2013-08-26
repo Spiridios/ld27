@@ -63,6 +63,9 @@ namespace Spiridios.SnapEncounters
             this.DefaultTextRenderer = new TextRenderer(this, "TitleScreenFont", Color.White );
 
             this.messageTextRenderer = new TextRenderer(this, "MessageFont", Color.White);
+            this.messageTextRenderer.DropShadow = true;
+            this.messageTextRenderer.DropShadowColor = new Color(0.0f,0.0f,0.0f,0.75f);
+            this.messageTextRenderer.DropShadowOffset = new Vector2(1,1);
             this.firstLine = this.messageTextRenderer.LineHeight * 3;
         }
 
